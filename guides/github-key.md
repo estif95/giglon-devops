@@ -4,16 +4,28 @@
 
 ### 1. Generar clave SSH
 ```bash
-ssh-keygen -t ed25519 -C "estif.95@gmail.com"
+ssh-keygen -t ed25519 -C "mail@example.com"
 ```
 > Genera una nueva clave SSH usando el algoritmo ed25519 con tu email como comentario.
 
-### 2. Iniciar el agente SSH
+### 2. Modificar el fichero ~/.ssh/config
+
+```bash
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+```
+
+AlternativamentE:
+
+### 2.1. Iniciar el agente SSH
 ```bash
 eval "$(ssh-agent -s)"
 ```
 
-### 3. Añadir la clave privada al agente
+### 2.2. Añadir la clave privada al agente
 ```bash
 ssh-add ~/.ssh/id_ed25519
 ```
