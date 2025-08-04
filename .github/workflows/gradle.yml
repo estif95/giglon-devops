@@ -32,6 +32,15 @@ jobs:
         name: app-jar
         path: build/libs/*.jar
 
+    - name: Build the Docker image
+      run: |
+        ls -la .
+        docker build . \
+          --file Dockerfile \
+          --build-arg JAR_FILE=$(ls *.jar) \
+          --tag springboot-example:$(date +%s)
+          
+
 # This workflow builds a Java project using only Gradle
 # jobs:
 #   build:
