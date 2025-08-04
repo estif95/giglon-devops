@@ -37,7 +37,7 @@ jobs:
         ls -la .
         docker build . \
           --file Dockerfile \
-          --build-arg JAR_FILE=$(ls *.jar) \
+          --build-arg JAR_FILE=$(ls build/libs/*.jar) \
           --tag springboot-example:$(date +%s)
           
 
