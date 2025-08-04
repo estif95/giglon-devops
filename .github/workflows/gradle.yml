@@ -15,6 +15,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+
     - name: Build with Gradle in Docker
       run: |
         docker run --rm \
