@@ -1,0 +1,36 @@
+name: Java CI with Docker for Gradle
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  gradle_build:
+    name: Build Java Project with Gradle in Docker
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+
+    - name: Run Gradle build inside Docker container
+      run: |
+        docker run --rm \
+          -v "$PWD":/app \
+          -w /app \
+          gradle:8.7-jdk17 \
+          ./gradlew build --no-daemon
+
+    - name: Upload build artifact (JAR file)
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-jar-${{ github.run_id }}
+        path: build/libs/*.jar
+  
