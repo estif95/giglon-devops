@@ -4,8 +4,7 @@ on:
   push:
     branches-ignore:
       - main
-  pull_request:
-    branches: [ "main" ]
+      
 jobs:
   gradle_build:
     name: Build Java Project with Gradle in Docker
