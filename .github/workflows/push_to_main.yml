@@ -3,8 +3,7 @@ name: Java CI with Docker for Gradle
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    
 jobs:
   gradle_build:
     name: Build Java Project with Gradle in Docker
